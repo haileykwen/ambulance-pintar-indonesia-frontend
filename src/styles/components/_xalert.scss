@@ -1,0 +1,22 @@
+@import "/src/styles/abstracts/variables";
+
+.xalert {
+    padding: 12px 23px;
+    border-radius: 4px;
+    
+    min-height: 40px;
+    box-sizing: border-box;
+    font-size: 12px; 
+    
+}
+
+.xalert[type="danger"] {
+    border: 1px solid $color_border_danger;
+    color: $color_font_danger;
+    background-color: $color_danger;
+}
+.xalert[type="success"] {
+    border: 1px solid $color_border_success;
+    color: $color_font_success;
+    background-color: $color_success;
+}

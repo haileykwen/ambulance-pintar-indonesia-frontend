@@ -1,0 +1,27 @@
+@import "/src/styles/abstracts/variables";
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    background-color: #373A47;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+.xsidebar-logout {
+    margin-bottom: 0px;
+    margin-top: auto;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+}
+.button-logout {
+    margin-left: auto;
+    cursor: pointer;
+}

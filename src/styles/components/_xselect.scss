@@ -1,0 +1,14 @@
+@import "/src/styles/abstracts/variables";
+
+.xselect {
+    padding: 12px 23px;
+    border-radius: 10px;
+    background-color: $color_secondary;
+    height: 45px;
+    color: $color_white;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 100%;
+}

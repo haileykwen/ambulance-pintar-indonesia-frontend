@@ -1,0 +1,24 @@
+@import "/src/styles/abstracts/variables";
+
+.button {
+    text-align: center;
+    padding: 12px 23px;
+    border-radius: 10px;
+    background-color: $color_tertiary;
+    width: unquote("min(100%, 300px)");
+    height: 45px;
+    color: $color_white;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: $shadow_primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading {
+    height: 75px;
+}
