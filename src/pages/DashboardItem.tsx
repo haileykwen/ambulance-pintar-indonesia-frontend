@@ -1,7 +1,6 @@
 import React from 'react';
-import { API_GET_ITEMS } from '../apis/item/Item';
+import { API_DELETE_ITEMS, API_GET_ITEMS } from '../apis/item/Item';
 import { LOT_LOADING_DOTS } from '../assets/lottie';
-import XButton from '../components/XButton';
 import XGap from '../components/XGap';
 import XImage from '../components/XImage';
 import XModalItem from '../components/XModalItem';
@@ -28,6 +27,7 @@ class DashboardItem extends React.Component<DashboardItemProps, DashboardItemSta
         };
         this.getItems = this.getItems.bind(this);
         this.onSuccessSubmit = this.onSuccessSubmit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
 
     getItems() {
@@ -49,6 +49,19 @@ class DashboardItem extends React.Component<DashboardItemProps, DashboardItemSta
             this.getItems();
         });
     };
+
+    onDelete(id: any) {
+        console.log(`Delete ${id}`);
+        API_DELETE_ITEMS(
+            id,
+            () => {
+                this.getItems();
+            },
+            (error: any) => {
+                console.log(error);
+            }
+        );
+    };
     
     componentDidMount() {
         this.getItems();
@@ -58,7 +71,11 @@ class DashboardItem extends React.Component<DashboardItemProps, DashboardItemSta
         const tableConfig = [
             {
                 header: "Nama Barang",
-                data: "name"
+                data: "name",
+            },
+            {
+                header: "Aksi",
+                data: "id"
             }
         ];
 
@@ -70,7 +87,7 @@ class DashboardItem extends React.Component<DashboardItemProps, DashboardItemSta
                 {!this.state.loading && <div>
                     <button className='dashboard-button' onClick={() => this.setState({modal: true})}>Tambah Barang</button>
                     <XGap height={20} />
-                    <XTable tableConfig={tableConfig} tableData={this.state.items} />
+                    <XTable tableConfig={tableConfig} tableData={this.state.items} onDelete={this.onDelete} />
 
                     {this.state.modal && <XModalItem onClose={() => this.setState({modal: false})} onSuccessSubmit={this.onSuccessSubmit} />}
                 </div>}

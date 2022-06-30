@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { cookiesClient } from '../apis/ApiCore';
-import XContainer from '../components/XContainer';
-import XNavbar from '../components/XNavbar';
 import XSidebar from '../components/XSidebar';
-import XText from '../components/XText';
 import { ROUTE } from '../config/Url';
 import { withRouter } from '../router/Navigation';
 import DashboardItem from './DashboardItem';
 import DashboardItemIn from './DashboardItemIn';
 import DashboardItemLog from './DashboardItemLog';
 import DashboardItemOut from './DashboardItemOut';
+import "../styles/pages/_dashboard.scss";
 
 interface DashboardProps {
     navigate?: any;

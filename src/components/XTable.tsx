@@ -1,17 +1,20 @@
 import moment from 'moment';
-import React from 'react';
 import "../styles/components/_xtable.scss";
 import 'moment/locale/id'; 
+import XImage from './XImage';
+import { IC_TRASH } from '../assets/icons';
 moment.locale("id");
 
 interface XTableProps {
     tableConfig: any;
     tableData: any;
+    onDelete?: any;
+    id?: any;
 };
 
 const XTable = (props: XTableProps) => {
     return (
-        <table>
+        <table id={props.id}>
             <thead>
                 <tr>
                     <td style={{ width: "40px" }}>
@@ -19,7 +22,7 @@ const XTable = (props: XTableProps) => {
                     </td>
                     {props.tableConfig.map((config: any, index: any) => {
                         return (
-                            <td key={index}>{config.header}</td>
+                            <td key={index}>{config.header === "Aksi" ? "" : config.header}</td>
                         );
                     })}
                 </tr>
@@ -36,7 +39,20 @@ const XTable = (props: XTableProps) => {
                                         {config.data === "log_type" && data[config.data] === 1 && "Masuk"}
                                         {config.data === "log_type" && data[config.data] === 2 && "Keluar"}
 
-                                        {config.data !== "timestamp" && config.data !== "log_type" && data[config.data]}
+                                        {config.data !== "timestamp" && config.data !== "log_type" && config.header !== "Aksi" && data[config.data]}
+
+                                        {config.header === "Aksi" 
+                                            ?   <button 
+                                                    style={{ outline: "none", border: "none" }}
+                                                    onClick={() => {
+                                                        const id = data[config.data];
+                                                        props.onDelete(id);
+                                                    }}
+                                                >
+                                                    <XImage src={IC_TRASH} style={{ height: "30px", width: "30px", cursor: "pointer" }} />
+                                                </button> 
+                                            :   null
+                                        }
                                     </td> 
                                 );
                             })}
